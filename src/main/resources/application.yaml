@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: pg_throughput
+
+  liquibase:
+    change-log: db/changelog/changelog-master.yaml
+
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5433/test
+    username: postgres
+    password: q1w2e3r4
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        generate_statistics: false
+
+server:
+  port: 8099
+  servlet:
+    context-path: /api/throughput/v1
+
+management:
+  server:
+    port: 8901
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+  metrics:
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
