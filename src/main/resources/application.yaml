@@ -9,6 +9,8 @@ spring:
     url: jdbc:postgresql://127.0.0.1:5433/test
     username: postgres
     password: q1w2e3r4
+    hikari:
+      maximum-pool-size: 6
 
   jpa:
     open-in-view: false
